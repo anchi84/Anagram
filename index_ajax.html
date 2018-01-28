@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Anagram</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+</head>
+
+<body>
+    <p>Check if two words are anagrams!</p>
+    <p>First word: </p>
+    <input type="text" id="first">
+    <p>Second word: </p>
+    <input type="text" id="second">
+    <input type="submit" value="Check" onclick="check()">
+    <p id="output"></p>
+    <script type="text/javascript">
+    function check() {
+        var msg = $('#first').val() +'&'+ $('#second').val();
+        $.ajax({
+            url: "http://127.0.0.1:5000/api/v1.0/anagrams/" +msg,
+            success: function(data) {
+                $('#output').html("<pre>" + JSON.stringify(data, null, 2) + "</pre>");
+            }
+        });
+    }
+    </script>
+</body>
+
+</html>
